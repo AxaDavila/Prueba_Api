@@ -1,0 +1,5 @@
+conclusiones y hallazgos:
+- es posible utilizar en algunas ocasiones los metodos get y post para obtener respuestas de un servicio a consumir.
+- es posible crear automatizaciones creadas por las mismas herramientas y obtener los resultados y seguimiento de los reportes.
+- se realiza una acción que permita crear los usuarios necesarios por cada vez que se ejecute la prueba, para la comprobación de la misma.
+- fue sencillo realizar las peticiones. 

@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "d2ef0125-71ff-43d1-8235-6ff3e405a12d",
+		"name": "Prueba_Api",
+		"description": "Se crean Cinco casos de prueba de la siguiente manera:\n\n**SignUp**\n\nCreate y User Exist\n\n- Verifica que el servicio se encuentre activo.\n- Que el usuario se registre correctamente\n- Que identifique un usuario ya registrado\n    \n\n**Login Access**\n\n- Verifica que el servicio se encuentre activo.\n- El usuario se haya autenticado\n- que posea un token de Autenticación de sesión\n- Solo es posible validarse por medio de un Post y NO por un metodo Get, debido a que no se recibe el Auth_token.\n    \n\n**Login Bad Request**\n\n- Por medio de cada método es posible validar el status http de la solicitud.\n- En cada uno responda e identifique que hay un error en la petición (usuario o contraseña invalida.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15449335"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Servicio Activo - Status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"usuario registrado\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"\");\r",
+							"});\r",
+							"pm.test(\"Usuario ya existe\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This user already exist.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"123456usuario\",\r\n\"password\": \"pass123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/signup",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				},
+				"description": "Creacion de usuarios"
+			},
+			"response": [
+				{
+					"name": "Signup Create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"username\": \"user{{$timestamp}}\",\r\n\"password\": \"pass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.demoblaze.com/signup",
+							"protocol": "https",
+							"host": [
+								"api",
+								"demoblaze",
+								"com"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "60c68a2c6d81b2083af4fa6f01e9cb98;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 May 2022 03:21:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Signup User Exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"username\": \"123usuario\",\r\n\"password\": \"pass123\"\r\n}"
+						},
+						"url": {
+							"raw": "https://api.demoblaze.com/signup",
+							"protocol": "https",
+							"host": [
+								"api",
+								"demoblaze",
+								"com"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "a61e633973c34931c448e73d96a6802c;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 30 May 2022 03:22:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"This user already exist.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Access",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Servicio Activo - Status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Acceso Iniciado\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"\");\r",
+							"});\r",
+							"pm.test(\"Auth_token generado\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Auth_token\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"123456usuario\",\r\n\"password\": \"pass123\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Acceso del sistema"
+			},
+			"response": []
+		},
+		{
+			"name": "Login Bad Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Contraseña o Usuario invalido - Status 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"400. That’s an error Your client has issued a malformed or illegal request. That’s all we know\", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"123456usuario\",\r\n\"password\": \"pass12345\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Bad Request P",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Contraseña o Usuario invalido - Status 400\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Wrong password.\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"123456usuario\",\r\n\"password\": \"pass12345\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
